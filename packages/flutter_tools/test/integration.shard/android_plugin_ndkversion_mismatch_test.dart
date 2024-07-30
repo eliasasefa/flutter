@@ -47,11 +47,17 @@ void main() {
     final String pluginBuildGradle = pluginGradleFile.readAsStringSync();
 
     // Bump up plugin ndkVersion to 21.4.7075529.
+<<<<<<< HEAD
     final RegExp androidNdkVersionRegExp = RegExp(
         r'ndkVersion (\"[0-9\.]+\"|flutter.ndkVersion|android.ndkVersion)');
     final String newPluginGradleFile = pluginBuildGradle.replaceAll(
         androidNdkVersionRegExp, ' ndkVersion "23.1.7779620"');
     expect(newPluginGradleFile, contains('23.1.7779620'));
+=======
+    final RegExp androidNdkVersionRegExp = RegExp(r'ndkVersion = (\"[0-9\.]+\"|flutter.ndkVersion|android.ndkVersion)');
+    final String newPluginGradleFile = pluginBuildGradle.replaceAll(androidNdkVersionRegExp, 'ndkVersion = "21.4.7075529"');
+    expect(newPluginGradleFile, contains('21.4.7075529'));
+>>>>>>> b0850beeb25f6d5b10426284f506557f66181b36
     pluginGradleFile.writeAsStringSync(newPluginGradleFile);
 
     final Directory pluginExampleAppDir =
@@ -66,9 +72,14 @@ void main() {
     final String projectBuildGradle = projectGradleFile.readAsStringSync();
 
     // Bump down plugin example app ndkVersion to 21.1.6352462.
+<<<<<<< HEAD
     final String newProjectGradleFile = projectBuildGradle.replaceAll(
         androidNdkVersionRegExp, 'ndkVersion "23.1.7779620"');
     expect(newProjectGradleFile, contains('23.1.7779620'));
+=======
+    final String newProjectGradleFile = projectBuildGradle.replaceAll(androidNdkVersionRegExp, 'ndkVersion = "21.1.6352462"');
+    expect(newProjectGradleFile, contains('21.1.6352462'));
+>>>>>>> b0850beeb25f6d5b10426284f506557f66181b36
     projectGradleFile.writeAsStringSync(newProjectGradleFile);
 
     // Run flutter build apk to build plugin example project
